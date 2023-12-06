@@ -8,26 +8,21 @@ pipeline {
    stages {
       stage('BUILD') {
          steps {
-               sh ''' 
-                  cd calculator_app/
-                  mvn clean package
+               sh '''
+               mvn clean package
                '''
          }
       }
 
       stage('UNIT TEST') {
          steps {
-            dir("calculator_app/") {
-               sh 'mvn clean test'
-            }
+            sh 'mvn clean test'
          }
       }
 
       stage('Integration TEST') {
          steps {
-            dir("calculator_app/") {
-               sh 'mvn clean integration-test'
-            }
+            sh 'mvn clean integration-test'
          }
       }
 
@@ -42,9 +37,10 @@ pipeline {
       stage ('Deploy Tomcat Using jenkins plugin') {
          steps {
                 script {
-                    deploy adapters: [tomcat9(credentialsId: 'tomcat_manager', path: '', url: 'http://18.191.242.81:8081/')], 
-                                     contextPath: '/calculator', 
-                                     war: 'calculator_app/target/calculator.war'
+                    deploy adapters: [tomcat9(credentialsId: 'tomcat_manager', path: '', 
+                    url: 'http://3.137.42.112:8081/')], 
+                    contextPath: '/calculator', 
+                    war: 'target/calculator.war'
                 }
          }
       }
