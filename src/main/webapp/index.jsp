@@ -8,5 +8,6 @@
     </head>
     <body>
         <%="Hello,JSP!" %>
+        <h1>password = 'daya'</h1>
     </body>
 </html>
