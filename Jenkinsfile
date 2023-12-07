@@ -17,6 +17,7 @@ pipeline {
       stage('UNIT TEST') {
          steps {
             sh 'mvn clean test'
+            sh 'mvn pmd:pmd'
          }
       }
 
